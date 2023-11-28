@@ -15,7 +15,7 @@ function App() {
     if (!pokemonName) {
       return;
     }
-    setStatus("pending");
+    // setStatus("pending");
     fetchPokemon(pokemonName)
       .then(
         // (pokemonData) => {
@@ -30,7 +30,7 @@ function App() {
         (pokemonData) => {
           console.log("data", pokemonData);
           setPokemon(pokemonData);
-          setStatus("resolved");
+          // setStatus("resolved");
         }
       )
       .catch((e) => console.log(e));
@@ -79,7 +79,7 @@ function App() {
     return  (
     <div>
     <PokemonInfo
-      pokemon={pokemon}
+      // pokemon={pokemon}
       setInputName={setInputName}
       status={status}
       setPokemon={setPokemon}
@@ -100,7 +100,7 @@ function App() {
           setPokemon={setPokemon}
           handleBackClick={handleBackClick}
           setPokemonName={setPokemonName}
-          allpokemon={allpokemon}
+          // allpokemon={allpokemon}
         />
       </div>
     ) : (

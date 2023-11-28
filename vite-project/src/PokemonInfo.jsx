@@ -25,7 +25,7 @@ function PokemonInfo({
   //   return "...";
   // }
 
-  if (status === "resolved") {
+  // if (status === "resolved") {
     // function handleBackClick() {
     //   console.log("back");
     //   setInputName("");
@@ -37,26 +37,32 @@ function PokemonInfo({
     // console.log(pokemon);
     // console.log(setPokemonName);
     return (
-      // <div className="container">
-      //   <div>
-      //     <img className="profile" src={pokemon.image} alt="" />
-      //   </div>
-      //   <div className="textField">
-      //     <div className="firstFlied">
-      //       <div>name:{pokemon.name}</div>
-      //       <div>type:{pokemon.types}</div>
-      //       <div>weaknesses:{pokemon.weaknesses}</div>
-      //     </div>
-      //     <button onClick={handleBackClick}>Back</button>
-      //   </div>
-      // </div>
-      allpokemon.map((pokemon)=>pokemon.name)
+      pokemon?(
+
+
+      <div className="container">
+        <div>
+          <img className="profile" src={pokemon.image} alt="" />
+        </div>
+        <div className="textField">
+          <div className="firstFlied">
+            <div>name:{pokemon.name}</div>
+            <div>type:{pokemon.types}</div>
+            <div>weaknesses:{pokemon.weaknesses}</div>
+          </div>
+          <button onClick={handleBackClick}>Back</button>
+        </div>
+      </div>
+      ):(
+
+        allpokemon.map((pokemon)=>pokemon.name)
+      )
 
     );
 
     // return <pre>{JSON.stringify(pokemon, null, 2)}</pre>;
     // return "resolved";
   }
-}
+// }
 
 export default PokemonInfo;
