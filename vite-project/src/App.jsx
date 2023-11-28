@@ -7,6 +7,10 @@ function App() {
   const [pokemonName, setPokemonName] = useState("");
   const [inputName, setInputName] = useState("");
 
+  function getAllPokemon(num) {
+
+    return()
+  }
   useEffect(() => {
     if (!pokemonName) {
       return;
@@ -83,6 +87,7 @@ function App() {
         </div>
       </form>
       <hr />
+
       {/* <PokemonInfo
         pokemon={pokemon}
         setInputName={setInputName}
