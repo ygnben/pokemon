@@ -7,7 +7,6 @@ function PokemonInfo({
   setPokemon,
   // setPokemonName,
   handleBackClick,
-  allpokemon
 }) {
   // const [status, setStatus] = useState("idle");
   // const [pokemon, setPokemon] = useState(null);
@@ -37,21 +36,19 @@ function PokemonInfo({
     // console.log(pokemon);
     // console.log(setPokemonName);
     return (
-      // <div className="container">
-      //   <div>
-      //     <img className="profile" src={pokemon.image} alt="" />
-      //   </div>
-      //   <div className="textField">
-      //     <div className="firstFlied">
-      //       <div>name:{pokemon.name}</div>
-      //       <div>type:{pokemon.types}</div>
-      //       <div>weaknesses:{pokemon.weaknesses}</div>
-      //     </div>
-      //     <button onClick={handleBackClick}>Back</button>
-      //   </div>
-      // </div>
-      allpokemon.map((pokemon)=>pokemon.name)
-
+      <div className="container">
+        <div>
+          <img className="profile" src={pokemon.image} alt="" />
+        </div>
+        <div className="textField">
+          <div className="firstFlied">
+            <div>name:{pokemon.name}</div>
+            <div>type:{pokemon.types}</div>
+            <div>weaknesses:{pokemon.weaknesses}</div>
+          </div>
+          <button onClick={handleBackClick}>Back</button>
+        </div>
+      </div>
     );
 
     // return <pre>{JSON.stringify(pokemon, null, 2)}</pre>;
