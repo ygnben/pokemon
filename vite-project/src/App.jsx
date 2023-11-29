@@ -14,40 +14,41 @@ function App() {
 
   //   return()
   // }
-  useEffect(() => {
-    if (!pokemonName) {
-      return;
-    }
-    // setStatus("pending");
-    fetchPokemon(pokemonName)
-      .then(
-        // (pokemonData) => {
-        //   setStatus("resolved");
-        //   console.log("data", pokemonData);
-        //   setPokemon(pokemonData);
-        // },
-        // (errorData) => {
-        //   setStatus("rejected");
-        //   setError(errorData);
-        // }
-        (pokemonData) => {
-          console.log("data", pokemonData);
-          setPokemon(pokemonData);
-          // setStatus("resolved");
-        }
-      )
-      .catch((e) => console.log(e));
-  }, [pokemonName]);
+  // useEffect(() => {
+  //   if (!pokemonName) {
+  //     return;
+  //   }
+  //   // setStatus("pending");
+  //   fetchPokemon(pokemonName)
+  //     .then(
+  //       // (pokemonData) => {
+  //       //   setStatus("resolved");
+  //       //   console.log("data", pokemonData);
+  //       //   setPokemon(pokemonData);
+  //       // },
+  //       // (errorData) => {
+  //       //   setStatus("rejected");
+  //       //   setError(errorData);
+  //       // }
+  //       (pokemonData) => {
+  //         console.log("data", pokemonData);
+  //         setPokemon(pokemonData);
+  //         // setStatus("resolved");
+  //       }
+  //     )
+  //     .catch((e) => console.log(e));
+  // }, [pokemonName]);
 
-  useEffect(() => {
-    fetchAllPokemon(1000).then((pokemonData) => {
-      setAllPokemon(pokemonData);
-    });
-  }, [status]);
+  // useEffect(() => {
+  //   fetchAllPokemon(1000).then((pokemonData) => {
+  //     setAllPokemon(pokemonData);
+  //   });
+  // }, [status]);
 
   function handleSubmit(event) {
     event.preventDefault();
     setPokemonName(event.target.elements.pokemonName.value);
+    // navigator("/pokemonInfo",{state:{pokemonName:"mew"}});
   }
 
   function handleChange(event) {
@@ -56,16 +57,16 @@ function App() {
     }
   }
 
-  function handleBackClick() {
-    console.log("back");
-    setInputName("");
-    setPokemon(null);
-    setPokemonName("");
-    setAllPokemon("");
-    console.log("in", setInputName);
-    console.log("setname", setPokemonName);
-    setStatus("one");
-  }
+  // function handleBackClick() {
+  //   console.log("back");
+  //   setInputName("");
+  //   setPokemon(null);
+  //   setPokemonName("");
+  //   setAllPokemon("");
+  //   console.log("in", setInputName);
+  //   console.log("setname", setPokemonName);
+  //   setStatus("one");
+  // }
 
   function handleAllClick() {
     // setStatus("All");
@@ -88,10 +89,11 @@ function App() {
       <div>
         <PokemonInfo
           // pokemon={pokemon}
+          pokemonName={pokemonName}
           setInputName={setInputName}
           status={status}
           setPokemon={setPokemon}
-          handleBackClick={handleBackClick}
+          // handleBackClick={handleBackClick}
           setPokemonName={setPokemonName}
           allpokemon={allpokemon}
         />
@@ -122,10 +124,11 @@ function App() {
       <div>
         <PokemonInfo
           pokemon={pokemon}
+          pokemonName={pokemonName}
           setInputName={setInputName}
           status={status}
           setPokemon={setPokemon}
-          handleBackClick={handleBackClick}
+          // handleBackClick={handleBackClick}
           setPokemonName={setPokemonName}
           // allpokemon={allpokemon}
         />
