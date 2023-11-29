@@ -6,7 +6,7 @@ function App() {
   const [pokemon, setPokemon] = useState(null);
   const [pokemonName, setPokemonName] = useState("");
   const [inputName, setInputName] = useState("");
-  const [allpokemon,setAllPokemon] = useState(null)
+  const [allpokemon, setAllPokemon] = useState(null);
   // function getAllPokemon(num) {
 
   //   return()
@@ -36,9 +36,11 @@ function App() {
       .catch((e) => console.log(e));
   }, [pokemonName]);
 
-  useEffect(()=>{
-    fetchAllPokemon(1000).then((pokemonData)=>{setAllPokemon(pokemonData)})
-  },[status])
+  useEffect(() => {
+    fetchAllPokemon(1000).then((pokemonData) => {
+      setAllPokemon(pokemonData);
+    });
+  }, [status]);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -56,12 +58,14 @@ function App() {
     setInputName("");
     setPokemon(null);
     setPokemonName("");
+    setAllPokemon("");
     console.log("in", setInputName);
     console.log("setname", setPokemonName);
+    setStatus("one");
   }
 
-  function handleAllClick(){
-    setStatus("All")
+  function handleAllClick() {
+    setStatus("All");
   }
   // if (status === "idle") {
   //   return "Submit a pokemon";
@@ -74,23 +78,42 @@ function App() {
   // if (status === "pending") {
   //   return "...";
   // }
-  console.log(status)
+  console.log(status);
   if (status === "All") {
-    return  (
-    <div>
-    <PokemonInfo
-      // pokemon={pokemon}
-      setInputName={setInputName}
-      status={status}
-      setPokemon={setPokemon}
-      handleBackClick={handleBackClick}
-      setPokemonName={setPokemonName}
-      allpokemon={allpokemon}
-    />
-  </div>
-  )
+    return allpokemon ? (
+      <div>
+        <PokemonInfo
+          // pokemon={pokemon}
+          setInputName={setInputName}
+          status={status}
+          setPokemon={setPokemon}
+          handleBackClick={handleBackClick}
+          setPokemonName={setPokemonName}
+          allpokemon={allpokemon}
+        />
+      </div>
+    ) : (
+      <div>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="pokemonName">Pokemon Name</label>
+          <div>
+            <input id="pokemonName" onChange={handleChange} value={inputName} />
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+        <hr />
+        <button onClick={handleAllClick}>get all pokemon</button>
+        {/* <PokemonInfo
+          pokemon={pokemon}
+          setInputName={setInputName}
+          status={status}
+          setPokemon={setPokemon}
+          setPokemonName={setPokemonName}
+        /> */}
+      </div>
+    );
   }
-  if(status ==="one"){
+  if (status === "one") {
     return pokemon ? (
       <div>
         <PokemonInfo
@@ -113,7 +136,7 @@ function App() {
           </div>
         </form>
         <hr />
-  <button onClick={handleAllClick}>a</button>
+        <button onClick={handleAllClick}>get all pokemon</button>
         {/* <PokemonInfo
           pokemon={pokemon}
           setInputName={setInputName}
@@ -123,14 +146,11 @@ function App() {
         /> */}
       </div>
     );
-
   }
-  
 }
 
-
-function fetchAllPokemon(first){
-  const pokemonQuery =`
+function fetchAllPokemon(first) {
+  const pokemonQuery = `
   query ($first: Int!){
     pokemons(first: $first) {
               id
@@ -161,9 +181,8 @@ function fetchAllPokemon(first){
               }
     }
   }`;
-return(
-
-  window
+  return (
+    window
       // .fetch("https://graphqlpokemon.favware.tech/v7", {
       .fetch("https://graphql-pokemon2.vercel.app", {
         // learn more about this API here: https://graphql-pokemon.now.sh/
@@ -181,14 +200,11 @@ return(
       })
       .then((r) => r.json())
       .then(
-        (response) =>
-         response.data.pokemons
+        (response) => response.data.pokemons
         // console.log("resp", response)
         // console.log("resp getpokemon", response);
       )
   );
-
-
 }
 
 function fetchPokemon(name) {
