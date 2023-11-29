@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import PokemonInfo from "./PokemonInfo";
+import { useNavigate } from "react-router-dom";
 import "./App.css";
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
   const [pokemonName, setPokemonName] = useState("");
   const [inputName, setInputName] = useState("");
   const [allpokemon, setAllPokemon] = useState(null);
+  const navigate = useNavigate();
   // function getAllPokemon(num) {
 
   //   return()
@@ -56,13 +58,15 @@ function App() {
 
   function handleBackClick() {
     console.log("back");
-    setInputName("");
-    setPokemon(null);
-    setPokemonName("");
-    setAllPokemon("");
-    console.log("in", setInputName);
-    console.log("setname", setPokemonName);
-    setStatus("one");
+    // setInputName("");
+    // setPokemon(null);
+    // setPokemonName("");
+    // setAllPokemon("");
+    // console.log("in", setInputName);
+    // console.log("setname", setPokemonName);
+    // setStatus("one");
+    // useNavigate(-1);
+    navigate("/home");
   }
 
   function handleAllClick() {
