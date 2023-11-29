@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./PokemonInfo.css";
 
 function PokemonInfo({
   pokemon,

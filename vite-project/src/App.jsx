@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import PokemonInfo from "./PokemonInfo";
+import "./App.css";
 
 function App() {
   const [status, setStatus] = useState("one");
@@ -127,7 +128,7 @@ function App() {
         />
       </div>
     ) : (
-      <div>
+      <div className="card">
         <form onSubmit={handleSubmit}>
           <label htmlFor="pokemonName">Pokemon Name</label>
           <div>
