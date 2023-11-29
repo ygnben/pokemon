@@ -15,11 +15,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   // </React.StrictMode>
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<App />}>
-        <Route index element={<App />} />
-        <Route path="/home" element={<App />} />
-        <Route path="/pokemonInfo" element={<PokemonInfo />} />
-      </Route>
+      {/* <Route path="/" element={<App />}> */}
+      <Route index element={<App />} />
+      <Route path="/home" element={<App />} />
+      <Route path="/pokemonInfo" element={<PokemonInfo />} />
+      {/* </Route> */}
     </Routes>
   </BrowserRouter>
 );

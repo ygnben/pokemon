@@ -9,7 +9,6 @@ function App() {
   const [pokemonName, setPokemonName] = useState("");
   const [inputName, setInputName] = useState("");
   const [allpokemon, setAllPokemon] = useState(null);
-  const navigate = useNavigate();
   // function getAllPokemon(num) {
 
   //   return()
@@ -68,8 +67,7 @@ function App() {
   }
 
   function handleAllClick() {
-    // setStatus("All");
-    navigate("/pokemonInfo");
+    setStatus("All");
   }
   // if (status === "idle") {
   //   return "Submit a pokemon";
