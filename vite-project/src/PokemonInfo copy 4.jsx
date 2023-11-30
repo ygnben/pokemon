@@ -1,14 +1,4 @@
 import React, { useState, useEffect } from "react";
-
-import Avatar from "@mui/material/Avatar";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
-
 import {
   createRoutesFromChildren,
   useLocation,
@@ -16,7 +6,7 @@ import {
   useParams,
 } from "react-router-dom";
 
-// import "./PokemonInfo.css";
+import "./PokemonInfo.css";
 
 function PokemonInfo({ setInputName, status }) {
   const [allpokemon, setAllPokemon] = useState([]);
@@ -54,45 +44,34 @@ function PokemonInfo({ setInputName, status }) {
   console.log("pokemon", pokemon);
 
   return pokemon ? (
-    <Card sx={{ width: 300 }}>
-      <Box sx={{ flexDirection: "column", display: "flex" }}>
-        {/* <div>
+    <div className="container">
+      <div>
         <img className="profile" src={pokemon.image} alt="" />
-      </div> */}
-        <Avatar src={pokemon.image} sx={{ width: 200, height: 200 }} />
-        <Box sx={{ flexDirection: "column", display: "flex" }}>
-          <Box sx={{ display: "flex", flexDirection: "column" }}>
+      </div>
+      <div className="textField">
+        <div className="firstFlied">
+          <div>name:{pokemon.name}</div>
+          <div>type:{pokemon.types}</div>
+          <div>weaknesses:{pokemon.weaknesses}</div>
+        </div>
+        <button onClick={handleBackClick}>Back</button>
+      </div>
+    </div>
+  ) : (
+    allpokemon.map((pokemon) => (
+      <div key={pokemon.id} className="container">
+        <div>
+          <img className="profile" src={pokemon.image} alt="" />
+        </div>
+        <div className="textField">
+          <div className="firstFlied">
             <div>name:{pokemon.name}</div>
             <div>type:{pokemon.types}</div>
             <div>weaknesses:{pokemon.weaknesses}</div>
-          </Box>
+          </div>
           <button onClick={handleBackClick}>Back</button>
-        </Box>
-      </Box>
-    </Card>
-  ) : (
-    allpokemon.map((pokemon) => (
-      <Card sx={{ width: 300 }}>
-        <Box sx={{ flexDirection: "column", display: "flex" }}>
-          {/* <div>
-        <img className="profile" src={pokemon.image} alt="" />
-      </div> */}
-          <Box sx={{ alignItems: "center" }}>
-            <Avatar
-              src={pokemon.image}
-              sx={{ width: 200, height: 200, justifyContent: "center" }}
-            />
-          </Box>
-          <Box sx={{ flexDirection: "column", display: "flex" }}>
-            <Box sx={{ display: "flex", flexDirection: "column" }}>
-              <div>name:{pokemon.name}</div>
-              <div>type:{pokemon.types}</div>
-              <div>weaknesses:{pokemon.weaknesses}</div>
-            </Box>
-            <button onClick={handleBackClick}>Back</button>
-          </Box>
-        </Box>
-      </Card>
+        </div>
+      </div>
     ))
   );
 }

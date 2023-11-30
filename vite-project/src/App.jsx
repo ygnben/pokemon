@@ -3,6 +3,14 @@ import PokemonInfo from "./PokemonInfo";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
 
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+
 function App() {
   // const [status, setStatus] = useState("one");
   const [pokemon, setPokemon] = useState(null);
@@ -16,9 +24,11 @@ function App() {
     // setPokemonName(event.target.elements.pokemonName.value);
     setPokemonName("abc");
     console.log("pokemonSName", pokemonName);
-    navigate(`/pokemonInfo/${inputName}`);
+    // navigate(`/pokemonInfo/${inputName}`);
+    navigate(`/pokemonInfo/${event.target.elements.pokemonName.value}`);
     // navigate(`/pokemonInfo/${event.target.elements.pokemonName.value}`); // another way to set status value
     // navigate(`/pokemonInfo/Bulbasaur`);
+    console.log("submit");
   }
 
   function handleChange(event) {
@@ -32,17 +42,49 @@ function App() {
   }
 
   return (
-    <div className="card">
+    // <div className="card">
+    //   <form onSubmit={handleSubmit}>
+    //     <label htmlFor="pokemonName">Pokemon Name</label>
+    //     <div>
+    //       <input id="pokemonName" onChange={handleChange} value={inputName} />
+    //       <button type="submit">Submit</button>
+    //     </div>
+    //   </form>
+    //   <hr />
+    //   <button onClick={handleAllClick}>get all pokemon</button>
+    // </div>
+    <Card sx={{ minWidth: 400 }}>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="pokemonName">Pokemon Name</label>
-        <div>
-          <input id="pokemonName" onChange={handleChange} value={inputName} />
-          <button type="submit">Submit</button>
-        </div>
+        <CardContent>
+          <div>
+            <Typography
+              sx={{ fontSize: 14 }}
+              color="text.secondary"
+              gutterBottom
+            >
+              Search Pokemon
+            </Typography>
+          </div>
+          <TextField
+            id="pokemonName"
+            label="Pokemon"
+            // onChange={handleChange}
+            // value={inputName}
+          />
+          <div>
+            <Button c type="submit" variant="contained" size="large">
+              Search
+            </Button>
+          </div>
+        </CardContent>
       </form>
-      <hr />
-      <button onClick={handleAllClick}>get all pokemon</button>
-    </div>
+      <CardActions>
+        {/* <Button size="small">Search</Button> */}
+        <Button onClick={handleAllClick} size="small">
+          Get All Pokemon
+        </Button>
+      </CardActions>
+    </Card>
   );
 }
 
