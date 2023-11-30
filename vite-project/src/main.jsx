@@ -19,6 +19,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Route index element={<App />} />
       <Route path="/home" element={<App />} />
       <Route path="/pokemonInfo" element={<PokemonInfo />} />
+      <Route path="/pokemonInfo/:name" element={<PokemonInfo />} />
       {/* </Route> */}
     </Routes>
   </BrowserRouter>

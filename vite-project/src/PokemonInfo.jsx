@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import {
+  createRoutesFromChildren,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 
 import "./PokemonInfo.css";
 
@@ -11,7 +16,7 @@ function PokemonInfo({
   // setPokemonName,
   // handleBackClick,
   // allpokemon,
-  pokemonName
+  // pokemonName,
 }) {
   // const [status, setStatus] = useState("idle");
   // const [pokemon, setPokemon] = useState(null);
@@ -19,17 +24,17 @@ function PokemonInfo({
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const [pokemon, setPokemon] = useState(null);
-  
-  // const {state} = useLocation();
-  // const {pokemonName} = state
 
-
+  const { name } = useParams();
+  // const { state } = useLocation();
+  // const { pokemonName } = state;
+  console.log("name", name);
   useEffect(() => {
-    if (!pokemonName) {
+    if (!name) {
       return;
     }
     // setStatus("pending");
-    fetchPokemon(pokemonName)
+    fetchPokemon(name)
       .then(
         // (pokemonData) => {
         //   setStatus("resolved");
@@ -47,18 +52,17 @@ function PokemonInfo({
         }
       )
       .catch((e) => console.log(e));
-  }, [pokemonName]);
+  }, [name]);
   useEffect(() => {
     fetchAllPokemon(1000).then((pokemonData) => {
       setAllPokemon(pokemonData);
-      console.log("pokemonData", pokemonData);
+      // console.log("pokemonData", pokemonData);
     });
     console.log("test");
   }, []);
 
-  console.log("allpokemon", allpokemon);
-  console.log("pokemon", pokemon);
-
+  // console.log("allpokemon", allpokemon);
+  // console.log("pokemon", pokemon);
 
   function handleBackClick() {
     console.log("back");
@@ -92,27 +96,28 @@ function PokemonInfo({
   //   // console.log("in", setInputName);
   //   console.log("setname", setPokemonName);
   // }
-  // console.log(pokemon);
+  console.log("pokemon", pokemon);
   // console.log(setPokemonName);
   // return(
+  // console.log("name", name);
 
-    return pokemonName ? (
-        <div className="container">
-          <div>
-            <img className="profile" src={pokemon.image} alt="" />
-          </div>
-          <div className="textField">
-            <div className="firstFlied">
-              <div>name:{pokemon.name}</div>
-              <div>type:{pokemon.types}</div>
-              <div>weaknesses:{pokemon.weaknesses}</div>
-            </div>
-            <button onClick={handleBackClick}>Back</button>
-          </div>
+  return pokemon ? (
+    <div className="container">
+      <div>
+        <img className="profile" src={pokemon.image} alt="" />
+      </div>
+      <div className="textField">
+        <div className="firstFlied">
+          <div>name:{pokemon.name}</div>
+          <div>type:{pokemon.types}</div>
+          <div>weaknesses:{pokemon.weaknesses}</div>
         </div>
-      ) : (
-        allpokemon.map((pokemon) => (
-          <div key={pokemon.id} className="container">
+        <button onClick={handleBackClick}>Back</button>
+      </div>
+    </div>
+  ) : (
+    allpokemon.map((pokemon) => (
+      <div key={pokemon.id} className="container">
         <div>
           <img className="profile" src={pokemon.image} alt="" />
         </div>
@@ -126,10 +131,10 @@ function PokemonInfo({
         </div>
       </div>
     ))
-      )
-    // )
-    // );
-    // return;
+  );
+  // )
+  // );
+  // return;
   // return <pre>{JSON.stringify(pokemon, null, 2)}</pre>;
   // return "resolved";
 }
@@ -184,8 +189,8 @@ function fetchAllPokemon(first) {
         }),
       })
       .then((r) => r.json())
-      .then((response) =>
-        response.data.pokemons
+      .then(
+        (response) => response.data.pokemons
         // console.log("resp", response)
         // console.log("resp getpokemon", response)
       )
@@ -244,7 +249,7 @@ function fetchPokemon(name) {
       .then((r) => r.json())
       .then(
         (response) => response.data.pokemon
-        // console.log("resp", response);
+        // console.log("resp", response)
         // console.log("resp getpokemon", response);
       )
   );

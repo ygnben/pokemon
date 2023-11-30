@@ -47,8 +47,13 @@ function App() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    setPokemonName(event.target.elements.pokemonName.value);
+    // setPokemonName(event.target.elements.pokemonName.value);
+    setPokemonName("abc");
     // navigator("/pokemonInfo",{state:{pokemonName:"mew"}});
+    console.log("pokemonSName", pokemonName);
+    navigate(`/pokemonInfo/${inputName}`);
+    // navigate(`/pokemonInfo/${event.target.elements.pokemonName.value}`);
+    // navigate(`/pokemonInfo/Bulbasaur`);
   }
 
   function handleChange(event) {
