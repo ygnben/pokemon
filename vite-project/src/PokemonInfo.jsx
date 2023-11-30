@@ -8,98 +8,40 @@ import {
 
 import "./PokemonInfo.css";
 
-function PokemonInfo({
-  // pokemon,
-  setInputName,
-  status,
-  // setPokemon,
-  // setPokemonName,
-  // handleBackClick,
-  // allpokemon,
-  // pokemonName,
-}) {
-  // const [status, setStatus] = useState("idle");
-  // const [pokemon, setPokemon] = useState(null);
+function PokemonInfo({ setInputName, status }) {
   const [allpokemon, setAllPokemon] = useState([]);
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
   const [pokemon, setPokemon] = useState(null);
 
   const { name } = useParams();
-  // const { state } = useLocation();
-  // const { pokemonName } = state;
+
   console.log("name", name);
   useEffect(() => {
     if (!name) {
       return;
     }
-    // setStatus("pending");
     fetchPokemon(name)
-      .then(
-        // (pokemonData) => {
-        //   setStatus("resolved");
-        //   console.log("data", pokemonData);
-        //   setPokemon(pokemonData);
-        // },
-        // (errorData) => {
-        //   setStatus("rejected");
-        //   setError(errorData);
-        // }
-        (pokemonData) => {
-          console.log("data", pokemonData);
-          setPokemon(pokemonData);
-          // setStatus("resolved");
-        }
-      )
+      .then((pokemonData) => {
+        console.log("data", pokemonData);
+        setPokemon(pokemonData);
+        // setStatus("resolved");
+      })
       .catch((e) => console.log(e));
   }, [name]);
   useEffect(() => {
     fetchAllPokemon(1000).then((pokemonData) => {
       setAllPokemon(pokemonData);
-      // console.log("pokemonData", pokemonData);
     });
     console.log("test");
   }, []);
 
-  // console.log("allpokemon", allpokemon);
-  // console.log("pokemon", pokemon);
-
   function handleBackClick() {
     console.log("back");
-    // setInputName("");
-    // setPokemon(null);
-    // setPokemonName("");
-    // setAllPokemon("");
-    // console.log("in", setInputName);
-    // console.log("setname", setPokemonName);
-    // setStatus("one");
+
     navigate("/home");
   }
-  // if (status === "idle") {
-  //   return "Submit a pokemon";
-  // }
 
-  // if (status === "rejected") {
-  //   return "Oh no...";
-  // }
-
-  // if (status === "pending") {
-  //   return "...";
-  // }
-
-  // if (status === "resolved") {
-  // function handleBackClick() {
-  //   console.log("back");
-  //   setInputName("");
-  //   setPokemon(null);
-  //   setPokemonName("");
-  //   // console.log("in", setInputName);
-  //   console.log("setname", setPokemonName);
-  // }
   console.log("pokemon", pokemon);
-  // console.log(setPokemonName);
-  // return(
-  // console.log("name", name);
 
   return pokemon ? (
     <div className="container">
@@ -132,11 +74,6 @@ function PokemonInfo({
       </div>
     ))
   );
-  // )
-  // );
-  // return;
-  // return <pre>{JSON.stringify(pokemon, null, 2)}</pre>;
-  // return "resolved";
 }
 
 function fetchAllPokemon(first) {
