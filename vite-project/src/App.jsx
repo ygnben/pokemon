@@ -54,9 +54,7 @@ function App() {
     //   <button onClick={handleAllClick}>get all pokemon</button>
     // </div>
     <Card sx={{ minWidth: 400 }}>
-      <form onSubmit={handleSubmit}>
-        <CardContent>
-          <div>
+       <div>
             <Typography
               sx={{ fontSize: 14 }}
               color="text.secondary"
@@ -65,17 +63,20 @@ function App() {
               Search Pokemon
             </Typography>
           </div>
+      <form onSubmit={handleSubmit}>
+        <CardContent sx={{display:"flex", justifyContent:"space-around"}}>
+         
           <TextField
             id="pokemonName"
             label="Pokemon"
             // onChange={handleChange}
             // value={inputName}
           />
-          <div>
-            <Button c type="submit" variant="contained" size="large">
+          
+            <Button  type="submit" variant="contained" size="large">
               Search
             </Button>
-          </div>
+          
         </CardContent>
       </form>
       <CardActions>
