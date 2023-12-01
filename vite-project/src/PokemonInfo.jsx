@@ -24,6 +24,8 @@ function PokemonInfo() {
   const navigate = useNavigate();
   // const [pokemon, setPokemon] = useState(null);
 
+  const first = +100;
+
   const { name } = useParams();
 
   const GET_ALL_POKEMON = gql`
@@ -105,9 +107,13 @@ function PokemonInfo() {
   //     .catch((e) => console.log(e));
   // }, [name]);
 
-  // const { loading, error, data } = useQuery(GET_POKEMON, {
-  //   variables: { name },
-  // });
+  const { loading, error, data } = name
+    ? useQuery(GET_POKEMON, {
+        variables: { name },
+      })
+    : useQuery(GET_ALL_POKEMON, {
+        variables: { first },
+      });
 
   console.log("data", data);
   if (loading) return <p>Loading...</p>;
@@ -129,7 +135,7 @@ function PokemonInfo() {
   // console.log("pokemon", pokemon);
 
   // return;
-  return data ? (
+  return name ? (
     <Card sx={{ width: 300 }}>
       <Box
         sx={{ flexDirection: "column", display: "flex", alignItems: "center" }}
@@ -160,7 +166,7 @@ function PokemonInfo() {
       <Box sx={{ display: "flex", width: "100%" }}>
         <button onClick={handleBackClick}>Back</button>
       </Box>
-      {allpokemon.map((pokemon) => (
+      {data.pokemons.map((pokemon) => (
         <Card key={pokemon.id} sx={{ width: 300, marginBottom: "50px" }}>
           <Box
             sx={{
