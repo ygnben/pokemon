@@ -35,7 +35,7 @@ import { ReactComponent as TiktokLogo } from "./assets/tiktok.svg";
 // MAKE SURE the (reactjs-social-login) components aren't unmounted or destroyed before the ask permission dialog closes
 const REDIRECT_URI = window.location.href;
 
-const App = () => {
+const Login = () => {
   const [provider, setProvider] = useState("");
   const [profile, setProfile] = useState(null);
 
@@ -98,4 +98,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Login;
