@@ -55,18 +55,20 @@ function PokemonInfo({ setInputName, status }) {
 
   return pokemon ? (
     <Card sx={{ width: 300 }}>
-      <Box sx={{ flexDirection: "column", display: "flex", alignItems: "center" }}>
+      <Box
+        sx={{ flexDirection: "column", display: "flex", alignItems: "center" }}
+      >
         {/* <div>
         <img className="profile" src={pokemon.image} alt="" />
       </div> */}
         <Avatar
-
           src={pokemon.image}
           sx={{
-
             border: "black solid",
-            width: 200, height: 200,
-          }} />
+            width: 200,
+            height: 200,
+          }}
+        />
         <Box sx={{ flexDirection: "column", display: "flex" }}>
           <Box sx={{ display: "flex", flexDirection: "column" }}>
             <div>name:{pokemon.name}</div>
@@ -79,43 +81,50 @@ function PokemonInfo({ setInputName, status }) {
     </Card>
   ) : (
     <Box sx={{ display: "flex", flexWrap: "wrap" }}>
-      <Box sx={
-        { display:"flex",width: "100%" }
-      }>
-
+      <Box sx={{ display: "flex", width: "100%" }}>
         <button onClick={handleBackClick}>Back</button>
       </Box>
-      {
-
-        allpokemon.map((pokemon) => (
-          <Card key={pokemon.id} sx={{ width: 300,  marginBottom:"50px"}}>
-            <Box sx={{ flexDirection: "column", display: "flex", alignItems: "center",  padding:"20px"}}>
-              {/* <div>
+      {allpokemon.map((pokemon) => (
+        <Card key={pokemon.id} sx={{ width: 300, marginBottom: "50px" }}>
+          <Box
+            sx={{
+              flexDirection: "column",
+              display: "flex",
+              alignItems: "center",
+              padding: "20px",
+            }}
+          >
+            {/* <div>
         <img className="profile" src={pokemon.image} alt="" />
       </div> */}
-              <Box sx={{ alignItems: "center" }}>
-                <Avatar
-                  src={pokemon.image}
-                  sx={{
-
-                    border: `black solid`,
-                    width: 200, height: 200,
-                  }}
-                />
-              </Box>
-              <Box sx={{ flexDirection: "column", display: "flex" }}>
-                <Box sx={{ display: "flex", flexDirection: "column", textAlign:"left"}}>
-                  <div>name:{pokemon.name}</div>
-                  <div>type:{pokemon.types}</div>
-                  <div>weaknesses:{pokemon.weaknesses}</div>
-                </Box>
-
+            <Box sx={{ alignItems: "center" }}>
+              <Avatar
+                src={pokemon.image}
+                sx={{
+                  border: `black solid`,
+                  width: 200,
+                  height: 200,
+                }}
+              />
+            </Box>
+            <Box sx={{ flexDirection: "column", display: "flex" }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  textAlign: "left",
+                }}
+              >
+                <div>name:{pokemon.name}</div>
+                <div>type:{pokemon.types}</div>
+                <div>weaknesses:{pokemon.weaknesses}</div>
               </Box>
             </Box>
-          </Card>
-        ))
-      }
-    </Box>);
+          </Box>
+        </Card>
+      ))}
+    </Box>
+  );
 }
 
 function fetchAllPokemon(first) {
