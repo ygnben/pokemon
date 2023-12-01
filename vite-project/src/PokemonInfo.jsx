@@ -8,6 +8,7 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
+import { useQuery, gql } from "@apollo/client";
 
 import {
   createRoutesFromChildren,
@@ -18,32 +19,106 @@ import {
 
 // import "./PokemonInfo.css";
 
-function PokemonInfo({ setInputName, status }) {
-  const [allpokemon, setAllPokemon] = useState([]);
+function PokemonInfo() {
+  // const [allpokemon, setAllPokemon] = useState([]);
   const navigate = useNavigate();
-  const [pokemon, setPokemon] = useState(null);
+  // const [pokemon, setPokemon] = useState(null);
 
   const { name } = useParams();
 
-  console.log("name", name);
-  useEffect(() => {
-    if (!name) {
-      return;
+  const GET_ALL_POKEMON = gql`
+    query ($first: Int!) {
+      pokemons(first: $first) {
+        id
+        number
+        name
+        image
+        weight {
+          minimum
+          maximum
+        }
+        types
+        height {
+          minimum
+          maximum
+        }
+        classification
+        resistant
+        weaknesses
+        fleeRate
+        maxHP
+        maxCP
+        evolutions {
+          id
+        }
+        evolutionRequirements {
+          amount
+          name
+        }
+      }
     }
-    fetchPokemon(name)
-      .then((pokemonData) => {
-        console.log("data", pokemonData);
-        setPokemon(pokemonData);
-        // setStatus("resolved");
-      })
-      .catch((e) => console.log(e));
-  }, [name]);
-  useEffect(() => {
-    fetchAllPokemon(100).then((pokemonData) => {
-      setAllPokemon(pokemonData);
-    });
-    console.log("test");
-  }, []);
+  `;
+  const GET_POKEMON = gql`
+    query Pokemon($name: String) {
+      pokemon(name: $name) {
+        id
+        number
+        name
+        image
+        weight {
+          minimum
+          maximum
+        }
+        types
+        height {
+          minimum
+          maximum
+        }
+        classification
+        resistant
+        weaknesses
+        fleeRate
+        maxHP
+        maxCP
+        evolutions {
+          id
+        }
+        evolutionRequirements {
+          amount
+          name
+        }
+      }
+    }
+  `;
+
+  // console.log("name", name);
+  // useEffect(() => {
+  //   if (!name) {
+  //     return;
+  //   }
+  //   fetchPokemon(name)
+  //     .then((pokemonData) => {
+  //       console.log("data", pokemonData);
+  //       setPokemon(pokemonData);
+  //       // setStatus("resolved");
+  //     })
+  //     .catch((e) => console.log(e));
+  // }, [name]);
+
+  // const { loading, error, data } = useQuery(GET_POKEMON, {
+  //   variables: { name },
+  // });
+
+  console.log("data", data);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error : {error.message}</p>;
+
+  // useEffect(() => {
+  //   fetchAllPokemon(100).then((pokemonData) => {
+  //     setAllPokemon(pokemonData);
+  //   });
+  //   console.log("test");
+  // }, []);
 
   function handleBackClick() {
     console.log("back");
@@ -51,9 +126,10 @@ function PokemonInfo({ setInputName, status }) {
     navigate("/home");
   }
 
-  console.log("pokemon", pokemon);
+  // console.log("pokemon", pokemon);
 
-  return pokemon ? (
+  // return;
+  return data ? (
     <Card sx={{ width: 300 }}>
       <Box
         sx={{ flexDirection: "column", display: "flex", alignItems: "center" }}
@@ -62,7 +138,7 @@ function PokemonInfo({ setInputName, status }) {
         <img className="profile" src={pokemon.image} alt="" />
       </div> */}
         <Avatar
-          src={pokemon.image}
+          src={data.pokemon.image}
           sx={{
             border: "black solid",
             width: 200,
@@ -71,9 +147,9 @@ function PokemonInfo({ setInputName, status }) {
         />
         <Box sx={{ flexDirection: "column", display: "flex" }}>
           <Box sx={{ display: "flex", flexDirection: "column" }}>
-            <div>name:{pokemon.name}</div>
-            <div>type:{pokemon.types}</div>
-            <div>weaknesses:{pokemon.weaknesses}</div>
+            <div>name:{data.pokemon.name}</div>
+            <div>type:{data.pokemon.types}</div>
+            <div>weaknesses:{data.pokemon.weaknesses}</div>
           </Box>
           <button onClick={handleBackClick}>Back</button>
         </Box>
