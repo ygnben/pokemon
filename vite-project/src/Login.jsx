@@ -1,23 +1,22 @@
 import React, { useCallback, useState } from "react";
 // import "./app.css";
-import { User } from   "./User"; // component display user (see detail on /example directory)
+import { User } from "./User"; // component display user (see detail on /example directory)
 
 import.meta.env;
-import {
-  LoginSocialGoogle,
-  
-  LoginSocialGithub,
- 
-} from "reactjs-social-login";
+import { LoginSocialGoogle, LoginSocialGithub } from "reactjs-social-login";
 
 // CUSTOMIZE ANY UI BUTTON
 import {
-  
   GoogleLoginButton,
   GithubLoginButton,
-
 } from "react-social-login-buttons";
 
+import {
+  createRoutesFromChildren,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 
 // import { ReactComponent as PinterestLogo } from "./assets/pinterest.svg";
 // import { ReactComponent as TiktokLogo } from "./assets/tiktok.svg";
@@ -34,6 +33,7 @@ const Login = () => {
     alert("login start");
   }, []);
 
+  const navigate = useNavigate();
   const onLogoutSuccess = useCallback(() => {
     setProfile(null);
     setProvider("");
@@ -64,6 +64,7 @@ const Login = () => {
             onResolve={({ provider, data }) => {
               setProvider(provider);
               setProfile(data);
+              navigate("/home");
             }}
             onReject={(err) => {
               console.log(err);
