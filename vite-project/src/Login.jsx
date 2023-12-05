@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 // import "./app.css";
-import { User } from "./User"; // component display user (see detail on /example directory)
+// import { User } from "./User"; // component display user (see detail on /example directory)
 
 import.meta.env;
 import { LoginSocialGoogle, LoginSocialGithub } from "reactjs-social-login";

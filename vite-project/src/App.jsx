@@ -12,7 +12,6 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 
 function App() {
-  // const [status, setStatus] = useState("one");
   const [pokemon, setPokemon] = useState(null);
   const [pokemonName, setPokemonName] = useState("");
   const [inputName, setInputName] = useState("");
@@ -21,13 +20,10 @@ function App() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    // setPokemonName(event.target.elements.pokemonName.value);
     setPokemonName("abc");
     console.log("pokemonSName", pokemonName);
-    // navigate(`/pokemonInfo/${inputName}`);
     navigate(`/pokemonInfo/${event.target.elements.pokemonName.value}`);
-    // navigate(`/pokemonInfo/${event.target.elements.pokemonName.value}`); // another way to set status value
-    // navigate(`/pokemonInfo/Bulbasaur`);
+
     console.log("submit");
   }
 
@@ -42,17 +38,6 @@ function App() {
   }
 
   return (
-    // <div className="card">
-    //   <form onSubmit={handleSubmit}>
-    //     <label htmlFor="pokemonName">Pokemon Name</label>
-    //     <div>
-    //       <input id="pokemonName" onChange={handleChange} value={inputName} />
-    //       <button type="submit">Submit</button>
-    //     </div>
-    //   </form>
-    //   <hr />
-    //   <button onClick={handleAllClick}>get all pokemon</button>
-    // </div>
     <Card sx={{ minWidth: 400 }}>
       <div>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
@@ -74,7 +59,6 @@ function App() {
         </CardContent>
       </form>
       <CardActions>
-        {/* <Button size="small">Search</Button> */}
         <Button onClick={handleAllClick} size="small">
           Get All Pokemon
         </Button>
