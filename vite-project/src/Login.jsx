@@ -41,6 +41,8 @@ const Login = () => {
   }, []);
   // console.log(process.env.development.VITE_APP_GG_APP_ID);
   console.log(import.meta.env.VITE_APP_GG_APP_ID);
+  console.log(import.meta.env.VITE_APP_GITHUB_APP_ID);
+  console.log(import.meta.env.VITE_APP_GITHUB_APP_SECRET);
   // console.log(process.env.VITE_APP_GG_APP_ID);
   // console.log(.env.REACT_APP_GG_APP_ID)
   // console.log(import.meta.env.development.REACT_APP_GG_APP_ID)
@@ -73,22 +75,25 @@ const Login = () => {
             <GoogleLoginButton />
           </LoginSocialGoogle>
 
-          {/* <LoginSocialGithub
+          <LoginSocialGithub
             isOnlyGetToken
-            client_id={process.env.REACT_APP_GITHUB_APP_ID || ""}
-            client_secret={process.env.REACT_APP_GITHUB_APP_SECRET || ""}
-            redirect_uri={REDIRECT_URI}
+            // client_id={process.env.REACT_APP_GITHUB_APP_ID || ""}
+            // client_secret={process.env.REACT_APP_GITHUB_APP_SECRET || ""}
+            client_id={import.meta.env.VITE_APP_GITHUB_APP_ID || ""}
+            client_secret={import.meta.env.VITE_APP_GITHUB_APP_SECRET || ""}
+            // redirect_uri={REDIRECT_URI}
             onLoginStart={onLoginStart}
             onResolve={({ provider, data }) => {
               setProvider(provider);
               setProfile(data);
+              navigate("/home");
             }}
             onReject={(err) => {
               console.log(err);
             }}
           >
             <GithubLoginButton />
-          </LoginSocialGithub> */}
+          </LoginSocialGithub>
         </div>
       )}
     </>
