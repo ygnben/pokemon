@@ -75,7 +75,7 @@ const Login = () => {
             <GoogleLoginButton />
           </LoginSocialGoogle>
 
-          {/* <LoginSocialGithub
+          <LoginSocialGithub
             isOnlyGetToken
             // client_id={process.env.REACT_APP_GITHUB_APP_ID || ""}
             // client_secret={process.env.REACT_APP_GITHUB_APP_SECRET || ""}
@@ -93,7 +93,7 @@ const Login = () => {
             }}
           >
             <GithubLoginButton />
-          </LoginSocialGithub> */}
+          </LoginSocialGithub>
         </div>
       )}
     </>
