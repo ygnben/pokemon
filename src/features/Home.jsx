@@ -10,6 +10,7 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
+import Logout from ".././features/Logout";
 
 function Home() {
   const [pokemon, setPokemon] = useState(null);
@@ -36,32 +37,35 @@ function Home() {
   }
 
   return (
-    <Card sx={{ minWidth: 400 }}>
-      <div>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          Search Pokemon
-        </Typography>
-      </div>
-      <form onSubmit={handleSubmit}>
-        <CardContent sx={{ display: "flex", justifyContent: "space-around" }}>
-          <TextField
-            id="pokemonName"
-            label="Pokemon"
-            // onChange={handleChange}
-            // value={inputName}
-          />
+    <>
+      <Card sx={{ minWidth: 400 }}>
+        <div>
+          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+            Search Pokemon
+          </Typography>
+        </div>
+        <form onSubmit={handleSubmit}>
+          <CardContent sx={{ display: "flex", justifyContent: "space-around" }}>
+            <TextField
+              id="pokemonName"
+              label="Pokemon"
+              // onChange={handleChange}
+              // value={inputName}
+            />
 
-          <Button type="submit" variant="contained" size="large">
-            Search
+            <Button type="submit" variant="contained" size="large">
+              Search
+            </Button>
+          </CardContent>
+        </form>
+        <CardActions>
+          <Button onClick={handleAllClick} size="small">
+            Get All Pokemon
           </Button>
-        </CardContent>
-      </form>
-      <CardActions>
-        <Button onClick={handleAllClick} size="small">
-          Get All Pokemon
-        </Button>
-      </CardActions>
-    </Card>
+        </CardActions>
+      </Card>
+      <Logout />
+    </>
   );
 }
 

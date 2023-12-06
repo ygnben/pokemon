@@ -40,7 +40,7 @@ const Login = () => {
     alert("logout success");
   }, []);
 
-  const getLogin = (token) => {
+  const getToHome = (token) => {
     if (token) {
       window.localStorage.setItem("token", token);
       navigate("/home");
@@ -65,7 +65,7 @@ const Login = () => {
             client_id={import.meta.env.VITE_APP_GG_APP_ID || ""}
             onLoginStart={onLoginStart}
             onResolve={({ provider, data }) => {
-              getLogin(data.access_token);
+              getToHome(data.access_token);
             }}
             onReject={(err) => {
               console.log(err);
@@ -81,7 +81,7 @@ const Login = () => {
             redirect_uri={REDIRECT_URI}
             onLoginStart={onLoginStart}
             onResolve={({ provider, data }) => {
-              getLogin(data.access_token);
+              getToHome(data.access_token);
             }}
             onReject={(err) => {
               console.log(err);

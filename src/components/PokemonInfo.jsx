@@ -10,6 +10,8 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import { useQuery, gql } from "@apollo/client";
 
+import Logout from "../features/Logout";
+
 import {
   createRoutesFromChildren,
   useLocation,
@@ -105,33 +107,43 @@ function PokemonInfo() {
   }
 
   return name ? (
-    <Card sx={{ width: 300 }}>
-      <Box
-        sx={{ flexDirection: "column", display: "flex", alignItems: "center" }}
-      >
-        <Avatar
-          src={data.pokemon.image}
+    <>
+      <Logout />
+
+      <Card sx={{ width: 300 }}>
+        <Box
           sx={{
-            border: "black solid",
-            width: 200,
-            height: 200,
+            flexDirection: "column",
+            display: "flex",
+            alignItems: "center",
           }}
-        />
-        <Box sx={{ flexDirection: "column", display: "flex" }}>
-          <Box sx={{ display: "flex", flexDirection: "column" }}>
-            <div>name:{data.pokemon.name}</div>
-            <div>type:{data.pokemon.types}</div>
-            <div>weaknesses:{data.pokemon.weaknesses}</div>
+        >
+          <Avatar
+            src={data.pokemon.image}
+            sx={{
+              border: "black solid",
+              width: 200,
+              height: 200,
+            }}
+          />
+          <Box sx={{ flexDirection: "column", display: "flex" }}>
+            <Box sx={{ display: "flex", flexDirection: "column" }}>
+              <div>name:{data.pokemon.name}</div>
+              <div>type:{data.pokemon.types}</div>
+              <div>weaknesses:{data.pokemon.weaknesses}</div>
+            </Box>
+            <button onClick={handleBackClick}>Back</button>
           </Box>
-          <button onClick={handleBackClick}>Back</button>
         </Box>
-      </Box>
-    </Card>
+      </Card>
+    </>
   ) : (
     <Box sx={{ display: "flex", flexWrap: "wrap" }}>
       <Box sx={{ display: "flex", width: "100%" }}>
         <button onClick={handleBackClick}>Back</button>
+        <Logout />
       </Box>
+
       {data.pokemons.map((pokemon) => (
         <Card key={pokemon.id} sx={{ width: 300, marginBottom: "50px" }}>
           <Box
