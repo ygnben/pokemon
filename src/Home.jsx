@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import PokemonInfo from "./PokemonInfo";
+import PokemonInfo from "./components/PokemonInfo";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
 
@@ -20,8 +20,6 @@ function Home() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    setPokemonName("abc");
-    console.log("pokemonSName", pokemonName);
     navigate(`/pokemonInfo/${event.target.elements.pokemonName.value}`);
 
     console.log("submit");

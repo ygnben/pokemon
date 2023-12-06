@@ -24,10 +24,15 @@ import {
 // REDIRECT URL must be same with URL where the (reactjs-social-login) components is locate
 // MAKE SURE the (reactjs-social-login) components aren't unmounted or destroyed before the ask permission dialog closes
 const REDIRECT_URI = window.location.href;
+const AuthContext = React.createContext(null);
 
 const Login = () => {
   const [provider, setProvider] = useState("");
   const [profile, setProfile] = useState(null);
+
+  const [token, setToken] = React.useState(null);
+
+  // const [user, setUser] = React.useState(null);
 
   const onLoginStart = useCallback(() => {
     alert("login start");
@@ -58,9 +63,12 @@ const Login = () => {
             client_id={import.meta.env.VITE_APP_GG_APP_ID || ""}
             onLoginStart={onLoginStart}
             onResolve={({ provider, data }) => {
-              setProvider(provider);
-              setProfile(data);
-              navigate("/home");
+              if (data.access_token) {
+                setToken(data.access_token);
+                window.localStorage.setItem("token", data.access_token);
+                navigate("/home");
+                // <Route path="home" element={<Home token={token} />} />;
+              }
             }}
             onReject={(err) => {
               console.log(err);
@@ -80,6 +88,8 @@ const Login = () => {
               // setProfile(data);
               // console.log(data);
               if (data.access_token) {
+                window.localStorage.setItem("token", data.access_token);
+                setToken(data.access_token);
                 navigate("/home");
               }
             }}
