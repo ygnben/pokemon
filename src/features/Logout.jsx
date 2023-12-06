@@ -6,7 +6,7 @@ function Logout() {
 
   function handleClicks() {
     // console.log("logout");
-    // window.localStorage.removeItem("token");
+    window.localStorage.removeItem("token");
     navigate("/login");
   }
 
