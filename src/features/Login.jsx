@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react";
 // import "./app.css";
 // import { User } from "./User"; // component display user (see detail on /example directory)
 
-import.meta.env;
+// import.meta.env;
 import { LoginSocialGoogle, LoginSocialGithub } from "reactjs-social-login";
 
 // CUSTOMIZE ANY UI BUTTON
@@ -24,18 +24,13 @@ import {
 // REDIRECT URL must be same with URL where the (reactjs-social-login) components is locate
 // MAKE SURE the (reactjs-social-login) components aren't unmounted or destroyed before the ask permission dialog closes
 const REDIRECT_URI = window.location.href;
-const AuthContext = React.createContext(null);
 
 const Login = () => {
   const [provider, setProvider] = useState("");
   const [profile, setProfile] = useState(null);
 
-  const [token, setToken] = React.useState(null);
-
-  // const [user, setUser] = React.useState(null);
-
   const onLoginStart = useCallback(() => {
-    alert("login start");
+    // alert("login start");
   }, []);
 
   const navigate = useNavigate();
@@ -45,6 +40,13 @@ const Login = () => {
     alert("logout success");
   }, []);
 
+  const getLogin = (token) => {
+    if (token) {
+      window.localStorage.setItem("token", token);
+      navigate("/home");
+      // <Route path="home" element={<Home token={token} />} />;
+    }
+  };
   return (
     <>
       {provider && profile ? (
@@ -63,12 +65,7 @@ const Login = () => {
             client_id={import.meta.env.VITE_APP_GG_APP_ID || ""}
             onLoginStart={onLoginStart}
             onResolve={({ provider, data }) => {
-              if (data.access_token) {
-                setToken(data.access_token);
-                window.localStorage.setItem("token", data.access_token);
-                navigate("/home");
-                // <Route path="home" element={<Home token={token} />} />;
-              }
+              getLogin(data.access_token);
             }}
             onReject={(err) => {
               console.log(err);
@@ -84,14 +81,7 @@ const Login = () => {
             redirect_uri={REDIRECT_URI}
             onLoginStart={onLoginStart}
             onResolve={({ provider, data }) => {
-              // setProvider(provider);
-              // setProfile(data);
-              // console.log(data);
-              if (data.access_token) {
-                window.localStorage.setItem("token", data.access_token);
-                setToken(data.access_token);
-                navigate("/home");
-              }
+              getLogin(data.access_token);
             }}
             onReject={(err) => {
               console.log(err);

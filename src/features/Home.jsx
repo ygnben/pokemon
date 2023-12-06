@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import PokemonInfo from "./components/PokemonInfo";
+import PokemonInfo from "../components/PokemonInfo";
 import { useNavigate } from "react-router-dom";
-import "./App.css";
+import ".././App.css";
 
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
