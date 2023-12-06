@@ -81,7 +81,7 @@ const Login = () => {
             // client_secret={process.env.REACT_APP_GITHUB_APP_SECRET || ""}
             client_id={import.meta.env.VITE_APP_GITHUB_APP_ID || ""}
             client_secret={import.meta.env.VITE_APP_GITHUB_APP_SECRET || ""}
-            // redirect_uri={REDIRECT_URI}
+            redirect_uri={REDIRECT_URI}
             onLoginStart={onLoginStart}
             onResolve={({ provider, data }) => {
               setProvider(provider);
