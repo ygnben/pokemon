@@ -11,7 +11,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 
-function App() {
+function Home() {
   const [pokemon, setPokemon] = useState(null);
   const [pokemonName, setPokemonName] = useState("");
   const [inputName, setInputName] = useState("");
@@ -67,4 +67,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
