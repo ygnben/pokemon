@@ -1,0 +1,7 @@
+FROM postgres
+
+ENV MYSQL_USER=app
+ENV MYSQL_PASSWORD=appsecret
+ENV MYSQL_ROOT_PASSWORD=MYSQL_ROOT_PASSWORD
+
+COPY ./prisma ./prisma
